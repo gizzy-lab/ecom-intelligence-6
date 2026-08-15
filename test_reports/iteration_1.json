@@ -1,0 +1,27 @@
+{
+  "summary": "Comprehensive backend + frontend testing of Runiq Insight. All backend endpoints (demo, upload CSV, upload XLSX, overview, insights, ask) return 200. Frontend flows verified: welcome -> demo -> overview KPIs, revenue trend, top products, top categories render correctly with real data. Business Insights shows 7 AI-enriched cards with WHAT/WHY/ACTION. Ask Runiq returns relevant AI answers. Sidebar navigation works. Page refresh returns user to welcome (per-session, no crash). The 'Session expired' bug (numpy.bool serialization on GET /api/overview) is RESOLVED.",
+  "backend_issues": {"critical": [], "minor": []},
+  "frontend_issues": {
+    "ui_bugs": [],
+    "integration_issues": [],
+    "design_issues": [
+      {"screen": "Business Insights cards", "issues": ["The 'WHY IT'S HAPPENING' and 'RECOMMENDED ACTION' text uses very light gray on light background — contrast appears low and hard to read. Meta labels like 'Home down -49%' also render in near-invisible gray. Consider darkening body text."]},
+      {"screen": "Executive Overview", "issues": ["Recharts logs 'width(-1) height(-1)' warning briefly during initial render — cosmetic only, chart renders correctly after mount."]}
+    ]
+  },
+  "test_report_links": ["/app/backend/tests/backend_test.py", "/app/test_reports/pytest/pytest_results.xml"],
+  "action_items": ["(Optional) Improve text contrast on Business Insights cards for WHY/ACTION body copy."],
+  "critical_code_review_comments": [
+    "server.py _dataset_meta returns 404 with message 'Dataset not found or session expired'. Frontend maps this to 'Session expired' toast — fine, but could distinguish 404 vs other errors.",
+    "In-memory DATASETS dict grows unbounded — no TTL/eviction. Acceptable for MVP but note for prod.",
+    "analysis.compute_overview correctly casts numpy scalars via bool()/float()/int(); regression risk if similar unsafe casts are introduced elsewhere. Consider a shared _to_native helper."
+  ],
+  "updated_files": ["/app/backend/tests/backend_test.py"],
+  "success_rate": {"backend": "100% (9/9)", "frontend": "100% (all flows)"},
+  "test_credentials": "N/A (no auth)",
+  "seed_data_creation": "Programmatic CSV and XLSX generated inside pytest for upload tests.",
+  "retest_needed": false,
+  "main_agent_can_self_test": true,
+  "context_for_next_testing_agent": "Backend regression suite lives at /app/backend/tests/backend_test.py and covers demo/upload/overview/insights/ask + invalid file + unknown dataset 404. All UI data-testids are present and reliable.",
+  "rca of the issue": "Bug was numpy.bool_ (from work['date'].notna().any()) being placed into the overview dict; FastAPI's default jsonable_encoder cannot serialize numpy.bool_ leading to 500 on GET /api/overview which the frontend interpreted as a 404 -> 'Session expired' toast. Fix in analysis.compute_overview casts has_date/has_category/has_product with bool(...). Verified: backend returns 200 and UI proceeds to Executive Overview without any 'Session expired' error."
+}

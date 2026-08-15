@@ -1,0 +1,92 @@
+{
+  "project_name": "Runiq Insight",
+  "theme": "light",
+  "brand_identity": {
+    "logo_treatment": "Typography-based logo. Use 'Cabinet Grotesk' font, 'font-black tracking-tighter'. 'Runiq' in high-contrast Black (text-zinc-950), 'Insight' in muted Gray (text-zinc-500).",
+    "vibe": "Sophisticated, Data-Focused, Swiss & High-Contrast (Authority, Clarity, Truth). Minimalist."
+  },
+  "typography": {
+    "font_families": {
+      "heading": "'Cabinet Grotesk', sans-serif",
+      "body": "'Inter', sans-serif",
+      "mono": "'JetBrains Mono', monospace"
+    },
+    "hierarchy": {
+      "h1": "text-4xl sm:text-5xl font-black tracking-tighter leading-tight text-zinc-950",
+      "h2": "text-2xl sm:text-3xl font-bold tracking-tight text-zinc-900",
+      "h3": "text-xl font-semibold tracking-tight text-zinc-900",
+      "body": "text-base leading-relaxed text-zinc-600",
+      "small": "text-sm text-zinc-500",
+      "label": "text-xs font-bold uppercase tracking-[0.2em] text-zinc-400"
+    },
+    "imports": [
+      "@import url('https://api.fontshare.com/v2/css?f[]=cabinet-grotesk@800,500,700,400,900&display=swap');",
+      "@import url('https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600&family=JetBrains+Mono:wght@400;500&display=swap');"
+    ]
+  },
+  "colors": {
+    "archetype": "SWISS & HIGH-CONTRAST",
+    "primary": "#09090B",
+    "primary_foreground": "#FAFAFA",
+    "secondary": "#F4F4F5",
+    "secondary_foreground": "#18181B",
+    "background": "#FFFFFF",
+    "surface": "#FAFAFA",
+    "border": "#E4E4E7",
+    "text": {
+      "primary": "#09090B",
+      "secondary": "#71717A",
+      "muted": "#A1A1AA"
+    },
+    "accents": {
+      "info": "#2563EB",
+      "success": "#16A34A",
+      "warning": "#D97706",
+      "danger": "#DC2626"
+    }
+  },
+  "layouts": {
+    "dashboard_grid": "High density, modular. Use 'grid-cols-1 md:grid-cols-3 lg:grid-cols-4' with tight gaps (gap-4 or gap-6).",
+    "spacing_scale": "Use generous padding inside containers (p-6, p-8) to prevent text collision. Follow standard Tailwind scale.",
+    "alignment": "Optical alignment. Left-align most content. Top-left quadrant for the most important metric (Modified F-pattern).",
+    "navigation": "Collapsible left sidebar (w-64) for navigation. Clean top header for search/profile."
+  },
+  "components": {
+    "cards": "Flat background (bg-white), 1px solid border (border-zinc-200), no shadows. Subtle rounded-lg.",
+    "buttons": "Sleek, high contrast. Primary: bg-zinc-950 text-white hover:bg-zinc-800. Secondary: bg-white border border-zinc-200 text-zinc-900 hover:bg-zinc-50. Pill-shaped or rounded-md.",
+    "kpi_cards": "Top left metric label, massive number (text-4xl font-black), small trend indicator below. Use grid-borders (border-r, border-b) for technical feel.",
+    "business_insights": "Feed list layout. Severity badges (red, orange, blue). Structure: WHAT (h3), WHY (muted body text), ACTION (accent button or bold link).",
+    "ask_runiq": "Conversational UI. User bubbles: bg-zinc-100 text-zinc-900. AI bubbles: bg-white border border-zinc-200. Monospace for data snippets.",
+    "upload_zone": "Large dashed border area, muted background (bg-zinc-50), centered clear CTA. Use minimal lucide icons."
+  },
+  "visual_enhancers": {
+    "shadows": "Minimal. Rely on border-zinc-200 to separate elements. Only use shadow-sm for active/floating states.",
+    "motion": "Subtle. Hover: bg color shift, -translate-y-[1px] for interactive cards. Smooth transitions for sidebar.",
+    "glassmorphism": "Avoid in data sections. Use only for sticky headers (backdrop-blur-xl bg-white/70 border-b border-zinc-200). DO NOT use transparent backgrounds over content."
+  },
+  "image_urls": {
+    "welcome_background": {
+      "url": "https://images.unsplash.com/photo-1558478551-1a378f63328e?crop=entropy&cs=srgb&fm=jpg&ixid=M3w4NjAzMjV8MHwxfHNlYXJjaHwyfHxtaW5pbWFsaXN0JTIwd29ya3NwYWNlJTIwZGVza3xlbnwwfHx8fDE3ODY3MDkwMDN8MA&ixlib=rb-4.1.0&q=85",
+      "description": "Minimal desk workspace - use as a subtle background or illustration for the empty state / welcome screen.",
+      "category": "empty_state"
+    }
+  },
+  "instructions_to_main_agent": [
+    "Install lucide-react for icons.",
+    "Install @fontsource/inter or use Google Fonts import for Inter and JetBrains Mono. Use Fontshare API for Cabinet Grotesk.",
+    "Implement a collapsible left sidebar layout with a fixed top header.",
+    "Ensure 'Business Insights' prioritizes text and actionable recommendations over excessive charting. Design this as a feed.",
+    "Use Recharts for the 'Revenue trend over time' chart, keeping it minimal (no grid lines, simple tooltip, use stroke-zinc-900).",
+    "Implement Shadcn UI for standard components (buttons, inputs, cards, tables).",
+    "Add 'data-testid' to all interactive elements."
+  ],
+  "UNIVERSAL GUIDELINES FOR MAIN AGENT": [
+    "Do not use generic centered layouts or simplistic gradients.",
+    "Create depth through layered design elements with z-index hierarchy and crisp 1px borders.",
+    "You MUST NOT apply universal transition (e.g., transition: all). Add specific transitions.",
+    "Always use modern button styles (sharp or slightly rounded) with interaction animations.",
+    "NEVER use placeholder text for images.",
+    "Use sonner for toasts.",
+    "Prioritize optical alignment and readability."
+  ]
+}
